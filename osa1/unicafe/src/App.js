@@ -26,7 +26,6 @@ const App = () => {
   }
 
 
-
   return (
     <div>
       <h1>Give feedback to Unicafe!</h1>
@@ -36,7 +35,11 @@ const App = () => {
       <h1>Statistics:</h1>
       <p>Good: {good}</p>
       <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>     
+      <p>Bad: {bad}</p>
+      <p>Number of given feedback: {allFeedback.length}</p>
+      <p>Average of given feedback: {allFeedback.reduce((a, b) => a + b, 0) /
+        allFeedback.length}</p>
+      <p>Percent of "Good" feedback: {good / allFeedback.length * 100} %</p>
     </div>
   )
 }
