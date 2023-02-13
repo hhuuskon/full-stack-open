@@ -1,5 +1,32 @@
 import { useState } from 'react'
 
+const Statistics = (props) => {
+  console.log(props.allFeedback)
+  if (props.allFeedback.length === 0) {
+    return (
+      <div>
+        No feedback given
+      </div>
+    )
+  }
+
+
+  return (
+    <div>
+      <p>Good: </p>
+      <p>Good: {props.good}</p>
+      <p>Neutral: {props.neutral}</p>
+      <p>Bad: {props.bad}</p>
+      <p>Number of given feedback: {props.allFeedback.length}</p>
+      <p>Average of given feedback: {props.allFeedback.reduce((a, b) => a + b, 0) /
+        props.allFeedback.length}</p>
+      <p>Percent of "Good" feedback: {props.good / props.allFeedback.length * 100} %</p>
+    </div>
+  )
+}
+
+
+
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
@@ -33,13 +60,7 @@ const App = () => {
       <button onClick={handleNeutralClick}>Neutral</button>
       <button onClick={handleBadClick}>Bad</button>
       <h1>Statistics:</h1>
-      <p>Good: {good}</p>
-      <p>Neutral: {neutral}</p>
-      <p>Bad: {bad}</p>
-      <p>Number of given feedback: {allFeedback.length}</p>
-      <p>Average of given feedback: {allFeedback.reduce((a, b) => a + b, 0) /
-        allFeedback.length}</p>
-      <p>Percent of "Good" feedback: {good / allFeedback.length * 100} %</p>
+      <Statistics good={good} neutral={neutral} bad={bad} allFeedback={allFeedback} />
     </div>
   )
 }
