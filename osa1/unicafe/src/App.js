@@ -24,14 +24,28 @@ const Statistics = (props) => {
   )
 }
 
-const StatiscticLine = ({value, text}) => {
+const StatiscticLine = ({ value, text }) => {
   if (text === 'Percent of "Good" feedback') {
     return (
-      <p>{text}: {value} %</p>
+      <table>
+        <tbody>
+          <tr>
+            <td>{text}:</td>
+            <td>{value}%</td>
+          </tr>
+        </tbody>
+      </table>
     )
   }
   return (
-    <p>{text}: {value}</p>
+    <table>
+      <tbody>
+        <tr>
+          <td>{text}:</td>
+          <td>{value}</td>
+        </tr>
+      </tbody>
+    </table>
   )
 }
 
