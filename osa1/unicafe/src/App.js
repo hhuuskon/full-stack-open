@@ -13,18 +13,33 @@ const Statistics = (props) => {
 
   return (
     <div>
-      <p>Good: </p>
-      <p>Good: {props.good}</p>
-      <p>Neutral: {props.neutral}</p>
-      <p>Bad: {props.bad}</p>
-      <p>Number of given feedback: {props.allFeedback.length}</p>
-      <p>Average of given feedback: {props.allFeedback.reduce((a, b) => a + b, 0) /
-        props.allFeedback.length}</p>
-      <p>Percent of "Good" feedback: {props.good / props.allFeedback.length * 100} %</p>
+      <StatiscticLine text='Good' value={props.good} />
+      <StatiscticLine text='Neutral' value={props.neutral} />
+      <StatiscticLine text='Bad' value={props.bad} />
+      <StatiscticLine text='Number of given feedback' value={props.allFeedback.length} />
+      <StatiscticLine text='Average of given feedback' value={props.allFeedback.reduce((a, b) => a + b, 0) /
+        props.allFeedback.length} />
+      <StatiscticLine text='Percent of "Good" feedback' value={props.good / props.allFeedback.length * 100} />
     </div>
   )
 }
 
+const StatiscticLine = ({value, text}) => {
+  if (text === 'Percent of "Good" feedback') {
+    return (
+      <p>{text}: {value} %</p>
+    )
+  }
+  return (
+    <p>{text}: {value}</p>
+  )
+}
+
+const Button = ({ handleClick, text }) => (
+  <button onClick={handleClick}>
+    {text}
+  </button>
+)
 
 
 const App = () => {
@@ -56,9 +71,9 @@ const App = () => {
   return (
     <div>
       <h1>Give feedback to Unicafe!</h1>
-      <button onClick={handleGoodClick}>Good</button>
-      <button onClick={handleNeutralClick}>Neutral</button>
-      <button onClick={handleBadClick}>Bad</button>
+      <Button handleClick={handleGoodClick} text='Good' />
+      <Button handleClick={handleNeutralClick} text='Neutral' />
+      <Button handleClick={handleBadClick} text='Bad' />
       <h1>Statistics:</h1>
       <Statistics good={good} neutral={neutral} bad={bad} allFeedback={allFeedback} />
     </div>
