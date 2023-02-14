@@ -1,4 +1,7 @@
+// Notes to self
 // https://stackoverflow.com/questions/4550505/getting-a-random-value-from-a-javascript-array
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf
+
 import { useState } from 'react'
 
 const Button = ({ handleClick, text }) => (
@@ -43,15 +46,17 @@ const App = () => {
     setVote(copy)
   }
 
-
-   
-
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       <AnecdoteText text={anecdotes[selected]} />
       <p>has {points[selected]} votes</p>
       <Button handleClick={handleAnecdote} text='next anecdote' />
       <Button handleClick={handleVote} text='vote' />
+      <h1>Anecdote with most votes</h1>
+      <AnecdoteText text={anecdotes[points.indexOf(Math.max(...points))]} />
+      <p>has {Math.max(...points)} votes</p>
+
     </div>
   )
 }
